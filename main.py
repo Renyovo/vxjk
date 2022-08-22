@@ -19,10 +19,19 @@ template_id = os.environ["TEMPLATE_ID"]
 
 
 def get_weather():
-  url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + city
+  url = "http://wthrcdn.etouch.cn/weather_mini?city=" + city
   res = requests.get(url).json()
-  weather = res['data']['list'][0]
-  return weather['weather'], math.floor(weather['temp'])
+  weather = res["data"]["forecast"][0]["type"]
+  high = res["data"]["forecast"][0]["high"].replace("高温 ","")
+  low = res["data"]["forecast"][0]["low"].replace("低温 ","")
+  fx = res["data"]["forecast"][0]["fengxiang"] + re.findall("\d+级",res["data"]["forecast"][0]["fengli"])[0]
+  tem = res["data"]["wendu"] + "℃"
+  ganmao = res["data"]["ganmao"]
+  return weather,high,low,fx,tem,ganmao
+
+def get_day():
+  week_list = ["星期一","星期二","星期三","星期四","星期五","星期六","星期日"]
+  return datetime.now().strftime("%Y年%m月%d日") + " " + week_list[datetime.now().weekday()]
 
 def get_count():
   delta = today - datetime.strptime(start_date, "%Y-%m-%d")
@@ -47,7 +56,7 @@ def get_random_color():
 client = WeChatClient(app_id, app_secret)
 
 wm = WeChatMessage(client)
-wea, temperature = get_weather()
-data = {"weather":{"value":wea},"temperature":{"value":temperature},"love_days":{"value":get_count()},"birthday_left":{"value":get_birthday()},"words":{"value":get_words(), "color":get_random_color()}}
+wea, high, low, fx, temperature, ganmao = get_weather()
+data = {"data",{"value":get_day(), "color":get_random_color()},"city":{"value":city, "color":get_random_color()},"weather":{"value":wea, "color":get_random_color()},"high":{"value":high, "color":get_random_color()},"low":{"value":low, "color":get_random_color()},"temperature":{"value":temperature, "color":get_random_color()},"wind":{"value":fx, "color":get_random_color()},"ganmao":{"value":ganmao, "color":get_random_color()},"love_days":{"value":get_count(), "color":get_random_color()},"birthday_left":{"value":get_birthday(), "color":get_random_color()},"words":{"value":get_words(), "color":get_random_color()}}
 res = wm.send_template(user_id, template_id, data)
 print(res)

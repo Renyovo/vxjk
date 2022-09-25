@@ -21,7 +21,7 @@ template_id = os.environ["TEMPLATE_ID"]
 
 def get_weather():
   url = "http://wthrcdn.etouch.cn/weather_mini?city=" + city
-  proxies = {"http": None, "https": None}
+  proxies = {"http": "116.31.75.31:8080", "https": "116.31.75.31;8080"}
   res = requests.get(url, proxies=proxies).json()
   weather = res["data"]["forecast"][0]["type"]
   high = res["data"]["forecast"][0]["high"].replace("高温 ","")

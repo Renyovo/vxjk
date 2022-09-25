@@ -21,7 +21,7 @@ template_id = os.environ["TEMPLATE_ID"]
 
 def get_weather():
   url = "http://wthrcdn.etouch.cn/weather_mini?city=" + city
-  res = requests.get(url).json()
+  res = requests.get(url, verify=False).json()
   weather = res["data"]["forecast"][0]["type"]
   high = res["data"]["forecast"][0]["high"].replace("高温 ","")
   low = res["data"]["forecast"][0]["low"].replace("低温 ","")

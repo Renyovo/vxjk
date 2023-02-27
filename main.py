@@ -41,7 +41,7 @@ api_key = os.environ["API_KEY"]
 def get_weather_now():
   rep1 = requests.get(url="https://devapi.qweather.com/v7/weather/now", params={"location": location_num, "key": api_key})
   tem = rep1.json()['now']['temp'] + "℃"
-  fx = rep1.json()['now']['windDir'] + rep1.json()['now']['windScale']
+  fx = rep1.json()['now']['windDir'] + rep1.json()['now']['windScale'] + "级"
   return tem,fx
 
 def get_weather_day():

@@ -40,7 +40,7 @@ api_key = os.environ["API_KEY"]
 
 def get_weather_now():
   rep1 = requests.get(url="https://devapi.qweather.com/v7/weather/now", params={"location": location_num, "key": api_key})
-  tem = rep1.json()['now']['temp']
+  tem = rep1.json()['now']['temp'] + "℃"
   fx = rep1.json()['now']['windDir'] + rep1.json()['now']['windScale']
   return tem,fx
 
@@ -48,8 +48,8 @@ def get_weather_day():
   rep2 = requests.get(url="https://devapi.qweather.com/v7/weather/3d", params={"location": location_num, "key": api_key})
   sunrise = rep2.json()['daily'][0]['sunrise']
   sunset = rep2.json()['daily'][0]['sunset']
-  high = rep2.json()['daily'][0]['tempMax']
-  low = rep2.json()['daily'][0]['tempMin']
+  high = rep2.json()['daily'][0]['tempMax'] + "℃"
+  low = rep2.json()['daily'][0]['tempMin'] + "℃"
   day_weather = rep2.json()['daily'][0]['textDay']
   night_weather = rep2.json()['daily'][0]['textNight']
   return sunrise,sunset,high,low,day_weather,night_weather

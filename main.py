@@ -111,8 +111,8 @@ quality,mark = get_air()
 notice = get_notice()
 loca = get_localation()
 data = {"data":{"value":get_day(), "color":get_random_color()},"city":{"value":loca, "color":get_random_color()},
-        "day_weather":{"value":day_weather, "color":get_random_color()},"night_weather":{"value":night_weather, "color":get_random_color()}
-        "high":{"value":high, "color":get_random_color()},"mark":{"value":mark, "color":get_random_color()}
+        "day_weather":{"value":day_weather, "color":get_random_color()},"night_weather":{"value":night_weather, "color":get_random_color()},
+        "high":{"value":high, "color":get_random_color()},"mark":{"value":mark, "color":get_random_color()},
         "low":{"value":low, "color":get_random_color()},"temperature":{"value":tem, "color":get_random_color()},
         "wind":{"value":fx, "color":get_random_color()},"notice":{"value":notice, "color":get_random_color()},
         "sunrise":{"value":sunrise, "color":get_random_color()},"sunset":{"value":sunset, "color":get_random_color()},

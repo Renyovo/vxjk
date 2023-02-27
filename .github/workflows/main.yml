@@ -31,3 +31,5 @@ jobs:
       BIRTHDAY: ${{ secrets.BIRTHDAY }}
       BIRTHDAYR: ${{ secrets.BIRTHDAYR }}
       CITY: ${{ secrets.CITY }}
+      LOCATION_NUM: ${{ secrets.LOCATION_NUM }}
+      API_KEY: ${{  secrets.API_KEY  }}

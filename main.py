@@ -61,7 +61,7 @@ def get_air():
   return quality,mark
 
 def get_notice():
-  rep4 = requests.get(url="https://devapi.qweather.com/v7/indices/1d", params={"location": location_num, "key": api_key})
+  rep4 = requests.get(url="https://devapi.qweather.com/v7/indices/1d", params={"type": 9, "location": location_num, "key": api_key})
   notice = rep4.json()['daily'][0]['text']
   return notice
 

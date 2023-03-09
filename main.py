@@ -67,7 +67,7 @@ def get_notice():
 
 def get_localation():
   rep5 = requests.get(url="https://geoapi.qweather.com/v2/city/lookup", params={"location": location_num, "key": api_key})
-  loca = rep5.json()["location"][0]["name"]
+  loca = rep5.json()["location"][0]["adm1"] + rep5.json()["location"][0]["adm2"] + "市" + rep5.json()["location"][0]["name"] + "区"
   return loca
 
 def get_day():
